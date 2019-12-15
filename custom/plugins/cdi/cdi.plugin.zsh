@@ -23,4 +23,5 @@ cdi()
 cdir()
 {
     $HOME/go/bin/list_projects > $HOME/.projects
+    PROJECTS=$(cat $HOME/.projects)
 }

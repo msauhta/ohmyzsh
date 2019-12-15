@@ -32,12 +32,12 @@ _psc()
         ;;
 
         (options)
-            __psc-tenant $line[1]
+            _psc-tenant $line[1]
         ;;
     esac
 }
 
-__psc-tenant()
+_psc-tenant()
 {
     tenant=$1
     local curcontext="$curcontext" state line

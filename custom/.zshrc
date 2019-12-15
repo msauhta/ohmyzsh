@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -57,7 +57,7 @@ plugins=(
   globalias
   git
   terraform
-  $(ls $HOME/.oh-my-zsh/custom/plugins)
+  $(ls $HOME/.oh-my-zsh/custom/plugins |grep -v 'README.md$')
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -80,27 +80,17 @@ fi
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
 
 ###########My Old settings from Bash###################
-export PATH="/Users/msauhta/bin:$PATH"
-export PYTHONSTARTUP=~/.pythonrc
-export SBT_OPTS=-Dsbt.override.build.repos=true
+# export PATH="$HOME/bin:$PATH"
+# export PYTHONSTARTUP=~/.pythonrc
+# export SBT_OPTS=-Dsbt.override.build.repos=true
 
 #To install thrift
-export PATH="/usr/local/opt/bison/bin:$PATH"
+# export PATH="/usr/local/opt/bison/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 
 #complete -o nospace -C /usr/local/bin/terraform terraform
-complete -o nospace -C /Users/msauhta/bin/vault vault
+complete -o nospace -C $HOME/bin/vault vault
