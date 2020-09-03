@@ -17,3 +17,6 @@ export PATH="~/.jenv/shims:$PATH"
 
 ##Gitlab API Token  : https://git.rxcorp.com/profile/personal_access_tokens
 export GITLAB_CREATE_PERSONAL_REPO=GVv2AqR7SZzG9HY4T6yS
+
+##Github API Token  : https://github.com/settings/tokens
+export GITHUB_CREATE_PERSONAL_REPO=8ed84056f7976d764728e3a9d163fd0c5aa983dd

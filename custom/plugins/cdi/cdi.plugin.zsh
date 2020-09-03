@@ -13,11 +13,10 @@ _cdi()
 compdef _cdi cdi
 
 #######END OF CDI AUTOCOMPLETE###################################################
-# This function updates the list of Triton instances for each configure profile
 cdi()
 {
 
-    cd "$HOME/code/ims/$1"
+    cd "$HOME/code/$1"
 }
 
 cdir()

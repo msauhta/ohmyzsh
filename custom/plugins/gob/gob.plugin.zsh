@@ -90,17 +90,8 @@ gobc()
         target_arch=$2
         package_import_path=$3
 
+        echo env GOOS=$target_os GOARCH=$target_arch go build $package_import_path
         env GOOS=$target_os GOARCH=$target_arch go build $package_import_path
-}
-
-gob()
-{
-    go build $1
-}
-
-goi()
-{
-    go install $1
 }
 
 # This function changes the directory to Go project

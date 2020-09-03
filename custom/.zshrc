@@ -54,8 +54,11 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  globalias
+  aws  
+  # globalias
   git
+  gradle
+  golang
   terraform
   $(ls $HOME/.oh-my-zsh/custom/plugins |grep -v 'README.md$')
 )
@@ -94,3 +97,6 @@ autoload -U +X bashcompinit && bashcompinit
 
 #complete -o nospace -C /usr/local/bin/terraform terraform
 complete -o nospace -C $HOME/bin/vault vault
+
+#cdp auto complete
+complete -C ~/bin/cdp_completer cdp
