@@ -20,6 +20,11 @@ alias mcim='mvn clean install -DskipTests=true -am -pl'
 alias mcip='mvn clean install -DskipTests=true -pl'
 alias mim='mvn install -am -pl'
 
+# gradle
+alias gwt='./gradlew clean build'
+alias gwb='./gradlew clean build -x test'
+alias gwi='./gradlew clean build publishToMavenLocal -x test'
+
 #gradle 
 #not using alias since it gets auto-expanded by globalalias plugin
 # func gw(){
