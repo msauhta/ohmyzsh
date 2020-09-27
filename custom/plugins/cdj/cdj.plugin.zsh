@@ -1,5 +1,5 @@
 PROJECTS=$(cat $HOME/.gradle_projects)
-#######START OF CDI AUTOCOMPLET###################################################
+#######START OF CDJ AUTOCOMPLET###################################################
 
 _cdj() 
 {
@@ -12,7 +12,7 @@ _cdj()
 
 compdef _cdj cdj
 
-#######END OF CDG AUTOCOMPLETE###################################################
+#######END OF CDJ AUTOCOMPLETE###################################################
 cdj()
 {
 
