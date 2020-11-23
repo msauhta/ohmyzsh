@@ -1,4 +1,4 @@
-PROJECTS=$(cat $HOME/.projects)
+CDI_PROJECTS=$(cat $HOME/.projects)
 #######START OF CDI AUTOCOMPLET###################################################
 
 _cdi() 
@@ -7,7 +7,7 @@ _cdi()
     typeset -A opt_args
 
     _alternative \
-        "projects:list of projects:($PROJECTS)"
+        "projects:list of projects:($CDI_PROJECTS)"
 }
 
 compdef _cdi cdi
@@ -22,5 +22,5 @@ cdi()
 cdir()
 {
     $HOME/go/bin/list_projects > $HOME/.projects
-    PROJECTS=$(cat $HOME/.projects)
+    CDI_PROJECTS=$(cat $HOME/.projects)
 }

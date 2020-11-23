@@ -1,4 +1,4 @@
-PROJECTS=$(cat $HOME/.gradle_projects)
+CDJ_PROJECTS=$(cat $HOME/.gradle_projects)
 #######START OF CDJ AUTOCOMPLET###################################################
 
 _cdj() 
@@ -7,7 +7,7 @@ _cdj()
     typeset -A opt_args
 
     _alternative \
-        "projects:list of projects:($PROJECTS)"
+        "projects:list of projects:($CDJ_PROJECTS)"
 }
 
 compdef _cdj cdj
@@ -22,5 +22,5 @@ cdj()
 cdjr()
 {
     $HOME/go/bin/list_projects -language gradle > $HOME/.gradle_projects
-    PROJECTS=$(cat $HOME/.gradle_projects)
+    CDJ_PROJECTS=$(cat $HOME/.gradle_projects)
 }

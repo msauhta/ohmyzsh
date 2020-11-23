@@ -6,6 +6,8 @@ alias cdphx='cd ~/code/ims/usx'
 # open oh-my-zsh
 alias ohmyzsh="code ~/.oh-my-zsh"
 
+# Login with ssh key
+alias sshu='ssh -o PubkeyAuthentication=no' 
 #dir-copy curr dir in clipboard
 alias pwc='pwd | pbcopy'
 #dir-change to directory in clipboard  
@@ -23,8 +25,11 @@ alias mim='mvn install -am -pl'
 # gradle
 alias gwt='./gradlew clean build'
 alias gwb='./gradlew clean build -x test'
+alias gwbr='./gradlew clean build -x test --refresh-dependencies'
 alias gwi='./gradlew clean build publishToMavenLocal -x test'
-
+alias gwic='./gradlew clean build publishToMavenLocal -x test -x testCoberturaReport'
+alias gwit='./gradlew clean build publishToMavenLocal'
+alias gwir='./gradlew clean build publishToMavenLocal -x test --refresh-dependencies'
 #gradle 
 #not using alias since it gets auto-expanded by globalalias plugin
 # func gw(){
