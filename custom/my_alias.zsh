@@ -2,6 +2,7 @@
 alias cdmoi='cd ~/code/ims/msauhta'
 alias cdhad='cd ~/code/ims/Hadoop/'
 alias cdphx='cd ~/code/ims/usx'
+alias cdo='cd ~/code/rwts/rds/oct/oct-data-hub'
 
 # open oh-my-zsh
 alias ohmyzsh="code ~/.oh-my-zsh"

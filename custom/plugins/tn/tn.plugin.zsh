@@ -17,10 +17,11 @@ alias tniml='tn image list'
 
 CACHE_PROFILE_INSTANCES="$HOME/.triton/tnrp_profile_instances"
 CACHE_PROFILE_IMAGES="$HOME/.triton/tnrp_profile_images"
+CACHE_PROFILES="$HOME/.triton/tnrp_profiles"
 
 #######START OF TN AUTOCOMPLETE###################################################
-instances=`cat $CACHE_PROFILE_INSTANCES |awk '{FS=","; OFS=","; print $1,$2}'`
-profiles=`triton profiles -o name |sed -e '1d'`
+#instances=`cat $CACHE_PROFILE_INSTANCES |awk '{FS=","; OFS=","; print $1,$2}'`
+#profiles=`cat $CACHE_PROFILES`
 
 _tn() 
 {
@@ -138,14 +139,15 @@ tnrp()
 {
     # Save current profile to revert back
     curr_profile=`triton profiles -o name,curr |grep \* |cut -f1 -d' '`
-
+    touch $CACHE_PROFILES
+    triton profiles -o name | sed -e '1d' | sort > $CACHE_PROFILES
 
     # If user provides a profile as input arg
     #  1. validate that the profile is valid
     #  2. update profiles array so only the user selected profile is updated
     # profiles=(`triton profiles -o name | sed -e '1d'|sort`)
     # above line was not getting converted into list/array
-    profiles=(`triton profiles -o name | sed -e '1d'|sort |sed -e 'H;$!d;x;s/\n/ /g' |cut -c2-`)
+    profiles=(`cat $CACHE_PROFILES |sed -e 'H;$!d;x;s/\n/ /g' |cut -c2-`)
     if [ $# -eq 1 ]; then
         do_one=1
         arg_profile=$1

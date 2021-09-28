@@ -39,8 +39,10 @@ hdsc()
     cmd=$1
     case $cmd in
         (list-clusters)
-           echo 'Cluster\tStatus\tNodes' && \
-           cdp datahub list-clusters |jq -r '.clusters[] | [.clusterName,.status,.nodeCount] | @tsv'
+           { 
+               echo 'Cluster\tStatus\tNodes' &
+               cdp datahub list-clusters |jq -r '.clusters[] | [.clusterName,.status,.nodeCount] | @tsv' 
+           } | column -t -s $'\t'
         ;;
         (*)
             triton $@
