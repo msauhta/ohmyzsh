@@ -24,13 +24,13 @@ alias mcip='mvn clean install -DskipTests=true -pl'
 alias mim='mvn install -am -pl'
 
 # gradle
-alias gwt='./gradlew clean build'
-alias gwb='./gradlew clean build -x test'
-alias gwbr='./gradlew clean build -x test --refresh-dependencies'
-alias gwi='./gradlew clean build publishToMavenLocal -x test'
-alias gwic='./gradlew clean build publishToMavenLocal -x test -x testCoberturaReport'
-alias gwit='./gradlew clean build publishToMavenLocal'
-alias gwir='./gradlew clean build publishToMavenLocal -x test --refresh-dependencies'
+alias gwb='./gradlew clean build'
+alias gwbt='./gradlew clean build -x test'
+alias gwbr='./gradlew clean build --refresh-dependencies'
+alias gwi='./gradlew clean build publishToMavenLocal'
+alias gwit='./gradlew clean build publishToMavenLocal -x test'
+alias gws='./gradlew clean shadowJar'
+alias gwst='./gradlew clean shadowJar -x test'
 #gradle 
 #not using alias since it gets auto-expanded by globalalias plugin
 # func gw(){
