@@ -94,9 +94,27 @@ export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
 # export PATH="/usr/local/opt/bison/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
+source /usr/local/etc/bash_completion.d/az
 
 #complete -o nospace -C /usr/local/bin/terraform terraform
-complete -o nospace -C $HOME/bin/vault vault
+# complete -o nospace -C $HOME/bin/vault vault
 
 #cdp auto complete
 complete -C ~/bin/cdp_completer cdp
+
+#auto complete for cdas
+source /opt/cdas/bin/cdas_completion
+source /opt/cdas/bin/cdasadmin_completion
+
+#export paths for python
+export PATH="/Users/msauhta/.pyenv/versions/3.7.10/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH=$(pyenv root)/shims:$PATH
+export PATH="/usr/local/opt/m4/bin:$PATH"
+
+
+#pull in passwords
+source ~/.passwords
+
+export AZURE_STORAGE_ACCOUNT=usxpspn
+export AZURE_STORAGE_AUTH_MODE=login
