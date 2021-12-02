@@ -20,8 +20,8 @@ CACHE_PROFILE_IMAGES="$HOME/.triton/tnrp_profile_images"
 CACHE_PROFILES="$HOME/.triton/tnrp_profiles"
 
 #######START OF TN AUTOCOMPLETE###################################################
-#instances=`cat $CACHE_PROFILE_INSTANCES |awk '{FS=","; OFS=","; print $1,$2}'`
-#profiles=`cat $CACHE_PROFILES`
+instances=`cat $CACHE_PROFILE_INSTANCES |awk '{FS=","; OFS=","; print $1,$2}'`
+profiles=`cat $CACHE_PROFILES`
 
 _tn() 
 {
@@ -147,41 +147,46 @@ tnrp()
     #  2. update profiles array so only the user selected profile is updated
     # profiles=(`triton profiles -o name | sed -e '1d'|sort`)
     # above line was not getting converted into list/array
-    profiles=(`cat $CACHE_PROFILES |sed -e 'H;$!d;x;s/\n/ /g' |cut -c2-`)
-    if [ $# -eq 1 ]; then
-        do_one=1
-        arg_profile=$1
-        if (($profiles[(Ie)$arg_profile])); then
-            # profile is valid so update the profiles array
-            profiles=($arg_profile)
-        else
-            echo "Profile $arg_profile not found in existing profiles listed below\n\t$profiles"
-            return 1
-        fi
-    else
+    
+    # profiles=(`cat $CACHE_PROFILES |sed -e 'H;$!d;x;s/\n/ /g' |cut -c2-`)
+    # profiles=$(cat $CACHE_PROFILES)
+    # if [ $# -eq 1 ]; then
+        # do_one=1
+        # arg_profile=$1
+        # profiles=$(cat $CACHE_PROFILES |grep $arg_prfile)
+        # if (($profiles[(Ie)$arg_profile])); then
+        #     # profile is valid so update the profiles array
+        #     profiles=($arg_profile)
+        # else
+        #     echo "Profile $arg_profile not found in existing profiles listed below\n\t$profiles"
+        #     return 1
+        # fi
+    # else
         # Get list of profiles
-        do_one=0
-    fi
-
+        # do_one=0
+    # fi
+    do_one=0
 
     touch $CACHE_PROFILE_INSTANCES
     touch $CACHE_PROFILE_IMAGES
-    for profile in $profiles;
+    for profile in `cat $CACHE_PROFILES`;
     do
       echo "Fetching >>$profile<<"
       triton profile set $profile >/dev/null
       # Create a new cache with list of instance name for the profile being processed
       triton instances -o name,primaryIp | sort | sed -e '1d' -e "s/^/${profile},/"  -e 's/  */,/' > ${CACHE_PROFILE_INSTANCES}_${profile} &
+      echo "Writing to : ${CACHE_PROFILE_INSTANCES}_${profile}"
       # Create a new cache with list of image name for the profile being processed
       triton images -o name | sort | sed -e '1d' -e "s/^/${profile},/" > ${CACHE_PROFILE_IMAGES}_${profile} &
+      echo "Writing to : ${CACHE_PROFILE_IMAGES}_${profile}"
     done
     echo "Waiting to let all processes complete"
     wait
     echo "All profiles fetched"
-  
+
     echo "Backup all stuff"
-    cp $CACHE_PROFILE_INSTANCES ${CACHE_PROFILE_INSTANCES}_bkp
-    cp $CACHE_PROFILE_IMAGES ${CACHE_PROFILE_IMAGES}_bkp
+    cp -f $CACHE_PROFILE_INSTANCES ${CACHE_PROFILE_INSTANCES}_bkp
+    cp -f $CACHE_PROFILE_IMAGES ${CACHE_PROFILE_IMAGES}_bkp
   
     if [ $do_one -eq 1 ]; then
       echo "Updating $profile"
@@ -196,7 +201,7 @@ tnrp()
     else
         rm -f $CACHE_PROFILE_INSTANCES
         rm -f $CACHE_PROFILE_IMAGES
-        for profile in $profiles;
+        for profile in `cat $CACHE_PROFILES`;
         do
             echo "Updating $profile"
             cat ${CACHE_PROFILE_INSTANCES}_${profile} >> $CACHE_PROFILE_INSTANCES
@@ -205,7 +210,7 @@ tnrp()
             rm -f ${CACHE_PROFILE_IMAGES}_${profile}
         done    
     fi
-
+    
     #Update the instance list
     instances=`cat $CACHE_PROFILE_INSTANCES |awk '{FS=","; OFS=","; print $1,$2}'`
 
