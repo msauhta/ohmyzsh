@@ -102,9 +102,6 @@ source /usr/local/etc/bash_completion.d/az
 #cdp auto complete
 complete -C ~/bin/cdp_completer cdp
 
-#auto complete for cdas
-source /opt/cdas/bin/cdas_completion
-source /opt/cdas/bin/cdasadmin_completion
 
 #export paths for python
 export PATH="/Users/msauhta/.pyenv/versions/3.7.10/bin:$PATH"
@@ -118,3 +115,6 @@ source ~/.passwords
 
 export AZURE_STORAGE_ACCOUNT=usxpspn
 export AZURE_STORAGE_AUTH_MODE=login
+
+#auto complete for cdas
+#source /opt/cdas/bin/cdas_completion
