@@ -1,7 +1,8 @@
 CACHE_HDSC_ENVIRONMENTS="$HOME/.cdp/hdsc_environments"
 
 #######START OF HDSC AUTOCOMPLETE###################################################
-hdsc_environments=`cat $CACHE_HDSC_ENVIRONMENTS |awk '{FS=","; OFS=","; print $1}'`
+#hdsc_environments=`cat $CACHE_HDSC_ENVIRONMENTS |awk '{FS=","; OFS=","; print $1}'`
+hdsc_environments="empty list"
 
 _hdsc() 
 {

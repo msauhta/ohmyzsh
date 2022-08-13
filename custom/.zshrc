@@ -63,6 +63,12 @@ plugins=(
   $(ls $HOME/.oh-my-zsh/custom/plugins |grep -v 'README.md$')
 )
 
+# https://docs.brew.sh/Shell-Completion
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -93,15 +99,13 @@ export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
 #To install thrift
 # export PATH="/usr/local/opt/bison/bin:$PATH"
 
-autoload -U +X bashcompinit && bashcompinit
-source /usr/local/etc/bash_completion.d/az
 
 #complete -o nospace -C /usr/local/bin/terraform terraform
 # complete -o nospace -C $HOME/bin/vault vault
 
-#cdp auto complete
-complete -C ~/bin/cdp_completer cdp
-
+# HOMEBREW_PREFIX="$(brew --prefix)"
+# autoload bashcompinit && bashcompinit
+# source "${HOMEBREW_PREFIX}/etc/bash_completion.d/az"
 
 #export paths for python
 export PATH="/Users/msauhta/.pyenv/versions/3.7.10/bin:$PATH"
@@ -118,3 +122,19 @@ export AZURE_STORAGE_AUTH_MODE=login
 
 #auto complete for cdas
 #source /opt/cdas/bin/cdas_completion
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
