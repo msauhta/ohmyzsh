@@ -60,6 +60,7 @@ plugins=(
   gradle
   golang
   terraform
+  conda
   $(ls $HOME/.oh-my-zsh/custom/plugins |grep -v 'README.md$')
 )
 
