@@ -22,6 +22,7 @@ cda()
 
 cdar()
 {
-    $HOME/go/bin/list_projects |grep ^abacus > $PROJECT_FILE
+    # select projects that start with abacus or ln/ng
+    $HOME/go/bin/list_projects | grep -E '^(abacus|ln/ng)' |sort > $PROJECT_FILE
     CDA_PROJECTS=$(cat $PROJECT_FILE)
 }

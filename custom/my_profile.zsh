@@ -1,7 +1,8 @@
 DEFAULT_USER=$USER
 
 export GOBIN=$HOME/go/bin
-export PATH=$GOBIN:$PATH
+export IDEA_PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH=$GOBIN:$IDEA_PATH:$PATH
 source ~/.iterm2_shell_integration.zsh
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
@@ -20,8 +21,13 @@ export PATH="~/.jenv/shims:$PATH"
 
 ##Gitlab API Token  : https://git.rxcorp.com/profile/personal_access_tokens
 export GITLAB_CREATE_PERSONAL_REPO=GVv2AqR7SZzG9HY4T6yS
+export GH_TOKEN=GVv2AqR7SZzG9HY4T6yS
 
 
 ##Github API Token  : https://github.com/settings/tokens
 export GITHUB_CREATE_PERSONAL_REPO=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
 
+##Abacus Insights 
+##JIRA API Token  : https://id.atlassian.com/manage-profile/security/api-tokens
+##Command line Jira CLI : https://github.com/ankitpokhrel/jira-cli
+export JIRA_API_TOKEN=0Kd3H3KekrvOJeFxpNMgE8AC

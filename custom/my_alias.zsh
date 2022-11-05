@@ -74,3 +74,8 @@ alias killNotifs='killall NotificationCenter'
 
 #Environment for Phoenix
 alias env_sct='source ~/bin/export_sct'
+
+
+# jira cli alias
+alias jira_my='jira issue list --assignee $(jira me) --status "~Done"'
+alias jira_all='jira issue list --status "~Done"'
