@@ -72,9 +72,8 @@ alias scalabig='scala -J-Xms2048m -J-Xmx2048m'
 
 alias killNotifs='killall NotificationCenter'
 
-#Environment for Phoenix
-alias env_sct='source ~/bin/export_sct'
-
+#git aliases
+alias gcl1='git clone --depth 1'
 
 # jira cli alias
 alias jira_my='jira issue list --assignee $(jira me) --status "~Done"'
