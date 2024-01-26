@@ -53,6 +53,19 @@ function git_develop_branch() {
   echo develop
 }
 
+# Check for qa and similarly named branches
+function git_qa_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local branch
+  for branch in qa test; do
+    if command git show-ref -q --verify refs/heads/$branch; then
+      echo $branch
+      return
+    fi
+  done
+  echo qa
+}
+
 #
 # Aliases
 # (sorted alphabetically)
@@ -107,6 +120,7 @@ alias gclean='git clean -id'
 alias gpristine='git reset --hard && git clean -dffx'
 alias gcm='git checkout $(git_main_branch)'
 alias gcd='git checkout $(git_develop_branch)'
+alias gcq='git checkout $(git_qa_branch)'
 alias gcmsg='git commit -m'
 alias gco='git checkout'
 alias gcor='git checkout --recurse-submodules'
