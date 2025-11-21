@@ -74,6 +74,8 @@ alias killNotifs='killall NotificationCenter'
 
 #git aliases
 alias gcl1='git clone --depth 1'
+# Git alias: list tags in order of creation (annotated tags)
+alias git_tag_sorted="git for-each-ref refs/tags --sort=taggerdate --format='%(taggerdate) %(refname:short)'"
 
 # jira cli alias
 alias jira_my='jira issue list --assignee $(jira me) --status "~Done"'
