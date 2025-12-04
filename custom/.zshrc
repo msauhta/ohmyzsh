@@ -158,3 +158,6 @@ autoload -Uz compinit && compinit
 # define the order in compdef (see example for cdi plugin)
 zstyle ':completion:*' sort false
 zstyle ':completion:*' menu select
+
+# Added by Antigravity
+export PATH="/Users/mohitsauhta/.antigravity/antigravity/bin:$PATH"
