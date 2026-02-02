@@ -161,3 +161,12 @@ zstyle ':completion:*' menu select
 
 # Added by Antigravity
 export PATH="/Users/mohitsauhta/.antigravity/antigravity/bin:$PATH"
+
+. "$HOME/.local/bin/env"
+
+# bun completions
+[ -s "/Users/mohitsauhta/.bun/_bun" ] && source "/Users/mohitsauhta/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
