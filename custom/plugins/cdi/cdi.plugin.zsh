@@ -26,15 +26,44 @@ cdi()
     cd "$HOME/code/$1"
 }
 
-cdir()
-{
+cdir() {
+  tmp_new="/tmp/.list_projects.new"
+  tmp_old="/tmp/.list_projects.old"
 
-    $HOME/go/bin/list_projects | sed -e 's/^/0\t/' > /tmp/.list_projects
-    if [ -f $HOME/.projects ]; then
-        cat $HOME/.projects >> /tmp/.list_projects
-    fi    
-    cat /tmp/.list_projects |\
-     sort -k1,1nr -k2,2 |\
-      awk '!seen[$2]++' > $HOME/.projects
-    CDI_PROJECTS=$(cat $HOME/.projects)
+  # Generate new authoritative list (default priority = 0)
+  "$HOME/go/bin/list_projects" \
+    | awk '{ print 0 "\t" $0 }' \
+    > "$tmp_new"
+
+  # Load existing projects (if any)
+  if [ -f "$HOME/.projects" ]; then
+    cp "$HOME/.projects" "$tmp_old"
+  else
+    : > "$tmp_old"
+  fi
+
+  # Merge:
+  # - keep only projects present in the new list
+  # - retain old priority when project exists
+  # - assign 0 to newly discovered projects
+  awk -F'\t' '
+    NR == FNR {
+      exists[$2] = 1
+      next
+    }
+
+    exists[$2] {
+      pr[$2] = $1
+    }
+
+    END {
+      for (p in exists) {
+        printf "%s\t%s\n", (p in pr ? pr[p] : 0), p
+      }
+    }
+  ' "$tmp_new" "$tmp_old" \
+    | sort -k1,1nr -k2,2 \
+    > "$HOME/.projects"
+
+  CDI_PROJECTS="$(cat "$HOME/.projects")"
 }
