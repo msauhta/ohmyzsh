@@ -4,15 +4,25 @@ export GOBIN=$HOME/go/bin
 export IDEA_PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 export PATH=$GOBIN:$IDEA_PATH:$PATH
 source ~/.iterm2_shell_integration.zsh
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-
-export PATH="~/.jenv/shims:$PATH"
-
-
-# Load pyenv automatically
+# Keep shims on PATH, but defer shell hook initialization until needed.
+export JENV_ROOT="$HOME/.jenv"
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+export PATH="$JENV_ROOT/shims:$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+
+_load_jenv() {
+	if command -v jenv >/dev/null 2>&1; then
+		eval "$(jenv init -)"
+	fi
+}
+
+_load_pyenv() {
+	if command -v pyenv >/dev/null 2>&1; then
+		eval "$(pyenv init --path)"
+		eval "$(pyenv init -)"
+		eval "$(pyenv virtualenv-init -)"
+	fi
+}
+
+jenv() { unfunction jenv; _load_jenv; jenv "$@"; }
+pyenv() { unfunction pyenv; _load_pyenv; pyenv "$@"; }
