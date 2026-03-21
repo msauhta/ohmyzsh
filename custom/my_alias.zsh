@@ -14,6 +14,9 @@ alias pwc='pwd | pbcopy'
 #dir-change to directory in clipboard  
 #alias cdp='cd `pbpaste`'    =>> Comment to avoid conflict with CDP command line
 
+# poetry
+alias actpo='source $(poetry env info --path)/bin/activate'
+
 #maven
 # commented out to use ~/bin
 #alias mi='mvn install -DskipTests=true'
