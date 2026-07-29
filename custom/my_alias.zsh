@@ -85,3 +85,6 @@ alias jira_my='jira issue list --assignee $(jira me) --status "~Done"'
 alias jira_all='jira issue list --status "~Done"'
 alias jira_on_ai='export JIRA_API_TOKEN=0Kd3H3KekrvOJeFxpNMgE8AC'
 alias jira_on_dh="export JIRA_API_TOKEN='ATATT3xFfGF0nMOy_qOOFLFNfop68OT0B9D9Y3UPOGrQsEV6mqPZ0RiocSQGxWGtcrKKMb4-mieWbuzn2RuQgt6_NkNJ1zsQI_GOvYjFwHeCXlgC43j1k_NWD9SmuDF_H5WEs60vZDk0HISTIqkSQTJQ2eWNfpQbmt6MTzrGBWzPq3T7CXf9tmU=09D9DF59'"
+
+# typora
+alias typora="open -a Typora"
